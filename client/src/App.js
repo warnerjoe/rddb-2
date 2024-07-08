@@ -20,13 +20,7 @@ const App = () => {
       });
   }, [pageNumber]);
 
-  const gotoPrevious = () => {
-    setPageNumber(Math.max(0, pageNumber - 1));
-  };
-
-  const gotoNext = () => {
-    setPageNumber(Math.min(numberOfPages - 1, pageNumber + 1));
-  };
+  
 
   useEffect(() => {
       axios.get('http://localhost:3000/api/cards')
@@ -43,7 +37,7 @@ const App = () => {
   return (
     <div className="App">
       
-      <Footer />
+      <Footer cards={cards} pageNumber={pageNumber} setPageNumber={setPageNumber} numberOfPages={numberOfPages} pages={pages}  />
       <Body cards={cards} />
     </div>
   );

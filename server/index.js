@@ -59,6 +59,17 @@ app.get("/api/cards", async (req, res) => {
     }
 });
 
+// Return the total number of cards in the collection
+app.get('/api/cards/count', async (req, res) => {
+    try {
+        const totalCards = await Card.countDocuments();
+        res.json({ totalCards });
+    } catch (error) {
+        console.error('Error fetching card count:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
 /*
 // /api/cards - GET - RETURNS ALL CARDS AS JSON - ORIGINAL ROUTE
 app.get('/api/cards', async (req, res) => {
