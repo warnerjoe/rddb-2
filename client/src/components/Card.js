@@ -3,6 +3,7 @@ import SuperstarCard from './SuperstarCard';
 import ArsenalCard from './ArsenalCard';
 
 const Card = ({ card }) => {
+
   // Function to get background color based on cardType
   const getBackgroundColor = () => {
     if (card.cardType.length === 2) {

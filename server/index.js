@@ -22,6 +22,7 @@ app.use(requestLogger);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use(express.json());
 
 // Enable CORS for all routes
 app.use(cors());
@@ -36,7 +37,30 @@ app.get('/', (req, res) => {
         .catch(error => console.error(error));
 });
 
-// /api/cards - GET - RETURNS ALL CARDS AS JSON
+app.get("/api/cards", async (req, res) => {
+    try {
+        const PAGE_SIZE = 12;
+        const page = parseInt(req.query.page || "0");
+        const total = await Card.countDocuments({});
+        const cards = await Card.find({})
+            .sort({ setName: 1, collectorNumber: 1 })
+            .limit(PAGE_SIZE)
+            .skip(PAGE_SIZE  * page); 
+
+            console.log('Response Data:', cards); // Log the response data
+
+        res.json({
+            totalPages: Math.ceil(total / PAGE_SIZE),
+            cards,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+/*
+// /api/cards - GET - RETURNS ALL CARDS AS JSON - ORIGINAL ROUTE
 app.get('/api/cards', async (req, res) => {
     try {
         const cards = await Card.find().sort({ setName: 1 , collectorNumber: 1 }); // Sorting by rarity in ascending order
@@ -47,42 +71,7 @@ app.get('/api/cards', async (req, res) => {
             res.status(500).json({ error: 'Internal Server Error' });
         };
 });
-
-// /cards - POST - ADDS A NEW CARD
-app.post('/cards', (req, res) => {
-    const card = new Card(req.body);
-    card.save()
-        .then(result => {
-            console.log(result);
-            res.redirect('/');
-        })
-        .catch(error => console.error(error));
-});
-
-// /cards - PUT - UPDATES A CARD
-app.put('/cards', (req, res) => {
-    Card.findOneAndUpdate(
-        { name: 'test' },
-        { $set: { name: req.body.name, quote: req.body.quote } },
-        { upsert: true, new: true }
-    )
-    .then(result => {
-        res.json('Success');
-    })
-    .catch(error => console.error(error));
-});
-
-// /cards - DELETE - DELETES A CARD
-app.delete('/cards', (req, res) => {
-    Card.deleteOne({ name: req.body.name })
-        .then(result => {
-            if (result.deletedCount === 0) {
-                return res.json('No card to delete');
-            }
-            res.json(`Deleted ${req.body.name}'s card`);
-        })
-        .catch(error => console.error(error));
-});
+*/
 
 // Connect to MongoDB and start the server
 mongoose.connect(process.env.MONGO_DB_URI, { dbName: 'raw-deal-app' })
