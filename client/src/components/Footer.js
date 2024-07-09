@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';  
 import CardCount from './Footer/CardCount.js';
-import Pagination from './Footer/Pagination.js';
+import Pagination from './Footer/Pagination.js'; // 
 
 const Footer = ({ cards, setPageNumber, pageNumber, numberOfPages }) => {
   let firstCard = pageNumber * 12 + 1;
