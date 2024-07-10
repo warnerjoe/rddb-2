@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -32,7 +33,7 @@ app.use(cors());
 app.get('/', (req, res) => {
     Card.find()
         .then(results => {
-            res.render('index.ejs', { cards: results });
+            console.log('you got results girl');
         })
         .catch(error => console.error(error));
 });
