@@ -24,3 +24,5 @@ Take a look at these couple examples that I have in my own portfolio:
 **Employee Error Reporter:** [https://github.com/warnerjoe/employee-error-reporter](https://github.com/warnerjoe/employee-error-reporter)
 
 **Node Portfolio:** [https://github.com/warnerjoe/nodeportfolio](https://github.com/warnerjoe/nodeportfolio)
+
+**RDDB:** [https://github.com/warnerjoe/rddb2/](https://github.com/warnerjoe/rddb2)
