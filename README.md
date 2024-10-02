@@ -4,7 +4,7 @@ I thought a great way to practice CRUD functionality while also practicing the M
 **Link to project:** COMING SOON
 
 ![Raw Deal Database](https://joewarner.rocks/images/rddb.png)
-)
+
 
 ## How It's Made:
 
