@@ -25,4 +25,4 @@ Take a look at these couple examples that I have in my own portfolio:
 
 **Node Portfolio:** [https://github.com/warnerjoe/nodeportfolio](https://github.com/warnerjoe/nodeportfolio)
 
-**RDDB:** [https://github.com/warnerjoe/rddb-2/](https://github.com/warnerjoe/rddb-2)
+**Goal App:** [https://github.com/warnerjoe/gpg](https://github.com/warnerjoe/gpg)
